@@ -9,4 +9,7 @@ export const typeDefs = gql`
   type Query {
     viewer: User
   }
+  type Mutation {
+    updateViewer: User
+  }
 `;

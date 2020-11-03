@@ -34,3 +34,5 @@ yarn-error.log*
 .vercel
 
 /draft
+/schema.graphql
+/src/common/apollo/generated

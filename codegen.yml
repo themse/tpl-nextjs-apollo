@@ -1,0 +1,21 @@
+overwrite: true
+schema: 'http://localhost:3000/api/graphql'
+generates:
+  src/common/apollo/generated/types.ts:
+    plugins:
+      - 'typescript'
+      - 'typescript-operations'
+      - 'typescript-resolvers'
+    config:
+      skipTypename: true
+      avoidOptionals: true
+  src/common/apollo/generated/helpers.ts:
+    plugins:
+      - typescript-apollo-client-helpers
+    config:
+      requireKeyFields: true
+  schema.graphql:
+    plugins:
+      - 'schema-ast'
+    config:
+      includeDirectives: true
