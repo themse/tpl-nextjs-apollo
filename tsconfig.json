@@ -6,10 +6,11 @@
       "@/server/*": ["src/server/*"],
       "@/client/*": ["src/client/*"],
       "@/apollo/*": ["src/common/apollo/*"],
+      "@/apollo-gen/*": ["src/common/apollo/generated/*"],
       "@/pages/*": ["src/client/containers/*"]
     },
-    "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "target": "es6",
+    "lib": ["dom", "dom.iterable", "es6", "es2017", "esnext"],
     "allowJs": false,
     "skipLibCheck": true,
     "strict": false,
@@ -23,5 +24,5 @@
     "jsx": "preserve"
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules", "src/common/apollo/generated"]
+  "exclude": ["node_modules"]
 }

@@ -1,21 +1,38 @@
 overwrite: true
 schema: 'http://localhost:3000/api/graphql'
+hooks:
+  afterAllFileWrite:
+    - prettier --write
 generates:
-  src/common/apollo/generated/types.ts:
+  src/common/apollo/generated/client.tsx:
+    documents:
+      ['src/common/apollo/queries/*.ts', 'src/common/apollo/mutations/*.ts']
     plugins:
-      - 'typescript'
-      - 'typescript-operations'
-      - 'typescript-resolvers'
+      - add:
+          content: '/* eslint-disable */'
+      - typescript
+      - typescript-operations
+      - typescript-react-apollo
+      - named-operations-object
     config:
       skipTypename: true
       avoidOptionals: true
+      withHOC: false
+      withComponent: false
+      withHooks: true
+      gqlImport: 'graphql-tag'
+      reactApolloVersion: 3
+      identifierName: ListAllOperations
   src/common/apollo/generated/helpers.ts:
     plugins:
+      - add:
+          content: '/* eslint-disable */'
       - typescript-apollo-client-helpers
     config:
       requireKeyFields: true
   schema.graphql:
     plugins:
-      - 'schema-ast'
+      - schema-ast
     config:
       includeDirectives: true
+      reactApolloVersion: 3

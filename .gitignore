@@ -35,4 +35,3 @@ yarn-error.log*
 
 /draft
 /schema.graphql
-/src/common/apollo/generated
