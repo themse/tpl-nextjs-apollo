@@ -15,14 +15,16 @@ generates:
       - typescript-react-apollo
       - named-operations-object
     config:
+      reactApolloVersion: 3
       skipTypename: true
       avoidOptionals: true
       withHOC: false
       withComponent: false
       withHooks: true
       gqlImport: 'graphql-tag'
-      reactApolloVersion: 3
       identifierName: ListAllOperations
+      namingConvention:
+        enumValues: keep
   src/common/apollo/generated/helpers.ts:
     plugins:
       - add:
@@ -34,5 +36,7 @@ generates:
     plugins:
       - schema-ast
     config:
-      includeDirectives: true
       reactApolloVersion: 3
+      includeDirectives: true
+      namingConvention:
+        enumValues: keep
