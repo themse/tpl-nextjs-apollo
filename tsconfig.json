@@ -5,8 +5,8 @@
       "@/common/*": ["src/common/*"],
       "@/server/*": ["src/server/*"],
       "@/client/*": ["src/client/*"],
-      "@/apollo/*": ["src/common/apollo/*"],
-      "@/apollo-gen/*": ["src/common/apollo/generated/*"],
+      "@/apollo/*": ["src/client/services/apollo/*"],
+      "@/apollo-gen/*": ["src/client/services/apollo/generated/*"],
       "@/pages/*": ["src/client/containers/*"]
     },
     "target": "es6",

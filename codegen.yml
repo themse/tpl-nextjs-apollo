@@ -4,9 +4,12 @@ hooks:
   afterAllFileWrite:
     - prettier --write
 generates:
-  src/common/apollo/generated/client.tsx:
+  src/client/services/apollo/generated/client.tsx:
     documents:
-      ['src/common/apollo/queries/*.ts', 'src/common/apollo/mutations/*.ts']
+      [
+        'src/client/services/apollo/queries/*.ts',
+        'src/client/services/apollo/mutations/*.ts',
+      ]
     plugins:
       - add:
           content: '/* eslint-disable */'
@@ -17,15 +20,13 @@ generates:
     config:
       reactApolloVersion: 3
       skipTypename: true
-      avoidOptionals: true
       withHOC: false
       withComponent: false
       withHooks: true
-      gqlImport: 'graphql-tag'
       identifierName: ListAllOperations
       namingConvention:
         enumValues: keep
-  src/common/apollo/generated/helpers.ts:
+  src/client/services/apollo/generated/helpers.ts:
     plugins:
       - add:
           content: '/* eslint-disable */'

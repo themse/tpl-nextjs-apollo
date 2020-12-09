@@ -4,15 +4,21 @@ import {
   FieldReadFunction,
   TypePolicies,
 } from '@apollo/client/cache';
-export type UserKeySpecifier = ('id' | 'name' | 'status' | UserKeySpecifier)[];
+export type UserKeySpecifier = (
+  | 'id'
+  | 'login'
+  | 'avatar_url'
+  | UserKeySpecifier
+)[];
 export type UserFieldPolicy = {
   id?: FieldPolicy<any> | FieldReadFunction<any>;
-  name?: FieldPolicy<any> | FieldReadFunction<any>;
-  status?: FieldPolicy<any> | FieldReadFunction<any>;
+  login?: FieldPolicy<any> | FieldReadFunction<any>;
+  avatar_url?: FieldPolicy<any> | FieldReadFunction<any>;
 };
-export type QueryKeySpecifier = ('viewer' | QueryKeySpecifier)[];
+export type QueryKeySpecifier = ('getUsers' | 'getUser' | QueryKeySpecifier)[];
 export type QueryFieldPolicy = {
-  viewer?: FieldPolicy<any> | FieldReadFunction<any>;
+  getUsers?: FieldPolicy<any> | FieldReadFunction<any>;
+  getUser?: FieldPolicy<any> | FieldReadFunction<any>;
 };
 export type MutationKeySpecifier = ('updateViewer' | MutationKeySpecifier)[];
 export type MutationFieldPolicy = {

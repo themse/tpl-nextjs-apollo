@@ -1,23 +1,29 @@
 import { ApolloClient, NormalizedCacheObject } from '@apollo/client/core';
 import { useMemo } from 'react';
+import getConfig from 'next/config';
+
 import { cache } from './cache';
 import { ResolverContext } from './types';
+
+const {
+  publicRuntimeConfig: { APOLLO_SERVER_URL },
+} = getConfig();
 
 let globalApolloClient: ApolloClient<NormalizedCacheObject> | undefined;
 
 const createIsomorphLink = (context: ResolverContext = {}) => {
   if (typeof window === 'undefined') {
     const { SchemaLink } = require('@apollo/client/link/schema');
-    const { schema } = require('./schema');
+    const { schema } = require('@/server/services/apollo/schema');
 
     return new SchemaLink({ schema, context });
   }
 
   const { HttpLink } = require('@apollo/client/link/http');
-  return new HttpLink({ uri: '/api/graphql', credentials: 'same-origin' });
+  return new HttpLink({ uri: APOLLO_SERVER_URL, credentials: 'same-origin' });
 };
 
-const createApolloClient = (context?: ResolverContext) => {
+const createApolloClient = (context: ResolverContext = {}) => {
   return new ApolloClient({
     ssrMode: typeof window === 'undefined',
     link: createIsomorphLink(context),
