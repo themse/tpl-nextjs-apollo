@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const withPlugins = require('next-compose-plugins');
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
@@ -14,7 +15,7 @@ const nextConfig = {
   publicRuntimeConfig: {
     // Will be available on both server and client
     APP_URL: process.env.APP_URL,
-    APOLLO_SERVER_URL: process.env.APOLLO_SERVER_URL,
+    GRAPHQL_SCHEMA_PATH: process.env.GRAPHQL_SCHEMA_PATH,
   },
 };
 module.exports = withPlugins([withBundleAnalyzer], nextConfig);

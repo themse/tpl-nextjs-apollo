@@ -13,7 +13,7 @@
     "lib": ["dom", "dom.iterable", "es6", "es2017", "esnext"],
     "allowJs": false,
     "skipLibCheck": true,
-    "strict": false,
+    "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,

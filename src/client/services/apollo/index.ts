@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 import { ApolloClient, NormalizedCacheObject } from '@apollo/client/core';
 import { useMemo } from 'react';
 import getConfig from 'next/config';
@@ -6,7 +7,7 @@ import { cache } from './cache';
 import { ResolverContext } from './types';
 
 const {
-  publicRuntimeConfig: { APOLLO_SERVER_URL },
+  publicRuntimeConfig: { GRAPHQL_SCHEMA_PATH },
 } = getConfig();
 
 let globalApolloClient: ApolloClient<NormalizedCacheObject> | undefined;
@@ -20,7 +21,7 @@ const createIsomorphLink = (context: ResolverContext = {}) => {
   }
 
   const { HttpLink } = require('@apollo/client/link/http');
-  return new HttpLink({ uri: APOLLO_SERVER_URL, credentials: 'same-origin' });
+  return new HttpLink({ uri: GRAPHQL_SCHEMA_PATH });
 };
 
 const createApolloClient = (context: ResolverContext = {}) => {
@@ -35,10 +36,9 @@ export const initializeApollo = (
   initialState: any = null,
   // Pages with Next.js data fetching methods, like `getStaticProps`, can send
   // a custom context which will be used by `SchemaLink` to server render pages
-  context?: ResolverContext
+  context?: ResolverContext,
 ): ApolloClient<NormalizedCacheObject> => {
-  const apolloClient: ApolloClient<NormalizedCacheObject> =
-    globalApolloClient ?? createApolloClient(context);
+  const apolloClient: ApolloClient<NormalizedCacheObject> = globalApolloClient ?? createApolloClient(context);
 
   // hydration
   if (initialState) {
@@ -56,7 +56,5 @@ export const initializeApollo = (
   return apolloClient;
 };
 
-export const useApollo = (
-  initialState: any
-): ApolloClient<NormalizedCacheObject> =>
+export const useApollo = (initialState: any): ApolloClient<NormalizedCacheObject> =>
   useMemo(() => initializeApollo(initialState), [initialState]);

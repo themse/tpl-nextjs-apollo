@@ -4,7 +4,7 @@ import getConfig from 'next/config';
 import { schema } from '@/server/services/apollo/schema';
 
 const {
-  publicRuntimeConfig: { APOLLO_SERVER_URL },
+  publicRuntimeConfig: { GRAPHQL_SCHEMA_PATH },
 } = getConfig();
 
 const apolloServer = new ApolloServer({ schema });
@@ -15,4 +15,4 @@ export const config = {
   },
 };
 
-export default apolloServer.createHandler({ path: APOLLO_SERVER_URL });
+export default apolloServer.createHandler({ path: GRAPHQL_SCHEMA_PATH });
